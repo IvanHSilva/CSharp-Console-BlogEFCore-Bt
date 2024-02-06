@@ -1,4 +1,5 @@
 ﻿using BlogEFCore.Data;
+using BlogEFCore.Models;
 
 namespace BlogEFCore
 {
@@ -8,7 +9,25 @@ namespace BlogEFCore
         {
             Console.WriteLine();
 
-            using (var context = new DataContext()) { };
+            using (var context = new DataContext())
+            {
+                // INSERT
+                // Tag tag = new() { Name = "EFCore", Slug = "ef-core" };
+                // context.Tags.Add(tag);
+                // context.SaveChanges();
+
+                // UPDATE
+                // Tag tag = context.Tags.FirstOrDefault(t => t.Id == 6)!;
+                // tag.Name = ".NET EFCore";
+                // tag.Slug = "net-efcore";
+                // context.Update(tag);
+                // context.SaveChanges();
+
+                // DELETE
+                Tag tag = context.Tags.FirstOrDefault(t => t.Id == 6)!;
+                context.Remove(tag);
+                context.SaveChanges();
+            };
         }
     }
 }
