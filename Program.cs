@@ -1,2 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using BlogEFCore.Data;
+
+namespace BlogEFCore
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine();
+
+            using (var context = new DataContext()) { };
+        }
+    }
+}

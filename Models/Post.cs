@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Blog.Models
+namespace BlogEFCore.Models
 {
     [Table("[Posts]")]
     public class Post
