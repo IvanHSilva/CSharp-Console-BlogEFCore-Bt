@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogEFCore.Models
 {
-    [Table("[Posts]")]
+    //[Table("[Posts]")]
     public class Post
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Slug { get; set; } = string.Empty;
@@ -14,7 +17,12 @@ namespace BlogEFCore.Models
         public DateTime CreateDate { get; set; }
         public DateTime LastUpdateDate { get; set; }
 
+        [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
+        public Category Category { get; set; } = null!;
+
+        [ForeignKey("AuthorId")]
         public int AuthorId { get; set; }
+        public User Author { get; set; } = null!;
     }
 }

@@ -1,4 +1,5 @@
-﻿using BlogEFCore.Data;
+﻿using System.ComponentModel;
+using BlogEFCore.Data;
 using BlogEFCore.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,39 +9,50 @@ namespace BlogEFCore
     {
         static void Main(string[] args)
         {
-            Console.WriteLine();
+            Console.Clear();
 
-            using (var context = new DataContext())
-            {
-                // INSERT
-                // Tag tag = new() { Name = "EFCore", Slug = "ef-core" };
-                // context.Tags.Add(tag);
-                // context.SaveChanges();
+            using DataContext context = new();
 
-                // UPDATE
-                // Tag tag = context.Tags.FirstOrDefault(t => t.Id == 6)!;
-                // tag.Name = ".NET EFCore";
-                // tag.Slug = "net-efcore";
-                // context.Update(tag);
-                // context.SaveChanges();
+            // User user = new()
+            // {
+            //     Name = "Nazaré Leal",
+            //     Email = "nazareleal@gmail.com",
+            //     PasswordHash = "0145451321654ASGJUYTECSNZ",
+            //     Bio = "Contadora",
+            //     Image = "http://",
+            //     Slug = "nazare-leal"
+            // };
+            // User user = context.Users.FirstOrDefault(u => u.Name.Contains("Nazaré"))!;
+            // Category category = context.Categories.FirstOrDefault(c => c.Name.Contains("Excel"))!;
 
-                // DELETE
-                // Tag tag = context.Tags.FirstOrDefault(t => t.Id == 6)!;
-                // if (tag != null)
-                // {
-                //     context.Remove(tag);
-                //     context.SaveChanges();
-                // }
+            // // Category category = new()
+            // // {
+            // //     Name = "Excel",
+            // //     Slug = "excel"
+            // // };
 
-                Console.WriteLine($"Tags:");
-                List<Tag> tags = [.. context.Tags.AsNoTracking().ToList()];
-                //.Where(t => t.Name.Contains("NET"))];
-                foreach (var tag in tags)
-                {
-                    Console.WriteLine($"{tag.Name} - {tag.Slug}");
-                }
-                Console.WriteLine("");
-            };
+            // Post post = new()
+            // {
+            //     CategoryId = category.Id,
+            //     AuthorId = user.Id,
+            //     Title = "Tabelas Dinâmicas no Excel",
+            //     Slug = "tabelas-dinâmicas-excel",
+            //     CreateDate = DateTime.Now,
+            //     LastUpdateDate = DateTime.Now
+            // };
+
+            // //context.Users.Add(user);
+            // //context.Categories.Add(category);
+            // context.Posts.Add(post);
+            // context.SaveChanges();
+
+            List<Post> posts = [.. context.Posts.AsNoTracking().Include(a => a.Author)
+            .OrderByDescending(p => p.LastUpdateDate)];
+
+            foreach (Post post in posts)
+                Console.WriteLine($"{post.Title} - autor: {post.Author?.Name}");
+
+            Console.WriteLine("");
         }
     }
 }
