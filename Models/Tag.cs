@@ -1,6 +1,5 @@
 namespace BlogEFCore.Models;
 
-//[Table("[Tags]")]
 public class Tag
 {
     public int Id { get; set; }

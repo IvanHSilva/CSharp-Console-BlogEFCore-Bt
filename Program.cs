@@ -46,11 +46,12 @@ namespace BlogEFCore
             // context.Posts.Add(post);
             // context.SaveChanges();
 
-            List<Post> posts = [.. context.Posts.AsNoTracking().Include(a => a.Author)
-            .OrderByDescending(p => p.LastUpdateDate)];
+            // List<Post> posts = [.. context.Posts.AsNoTracking()
+            // .Include(a => a.Author).Include(c => c.Category)
+            // .OrderByDescending(p => p.LastUpdateDate)];
 
-            foreach (Post post in posts)
-                Console.WriteLine($"{post.Title} - autor: {post.Author?.Name}");
+            // foreach (Post post in posts)
+            //     Console.WriteLine($"{post.Title} - autor: {post.Author?.Name} em {post.Category?.Name}");
 
             Console.WriteLine("");
         }
