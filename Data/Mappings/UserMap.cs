@@ -9,7 +9,7 @@ public class UserMap : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         // Table
-        builder.ToTable("User");
+        builder.ToTable("Users");
 
         // PrimaryKey
         builder.HasKey(u => u.Id);
