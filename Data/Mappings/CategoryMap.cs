@@ -22,7 +22,7 @@ public class CategoryMap : IEntityTypeConfiguration<Category>
         //.HasColumnType("NVARCHAR").HasMaxLength(80);
         builder.Property(c => c.Slug).IsRequired().HasColumnName("Slug").HasDefaultValue("");
 
-        // Indices
+        // Index
         // builder.HasIndex(c => c.Slug, "IX_Category_Slug").IsUnique();
     }
 }
