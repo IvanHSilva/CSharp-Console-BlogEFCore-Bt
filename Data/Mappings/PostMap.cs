@@ -26,8 +26,12 @@ public class PostMap : IEntityTypeConfiguration<Post>
         //.HasColumnType("SMALLDATETIME").HasDefaultValueSql("GETDATE()");
         builder.Property(p => p.LastUpdateDate).IsRequired().HasColumnName("LastUpdateDate").HasDefaultValue(DateTime.Now.ToUniversalTime());
 
-
         // Index
         // builder.HasIndex(p => p.Slug, "IX_Post_Slug").IsUnique();
+
+        // Relations
+        builder.HasOne(p => p.Author).WithMany(p => p.Posts);
+        //.HasConstraintName("FK_Post_Author").OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(p => p.Category).WithMany(p => p.Posts);
     }
 }
