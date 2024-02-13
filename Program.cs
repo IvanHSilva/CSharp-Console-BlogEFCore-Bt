@@ -53,6 +53,31 @@ namespace BlogEFCore
             // foreach (Post post in posts)
             //     Console.WriteLine($"{post.Title} - autor: {post.Author?.Name} em {post.Category?.Name}");
 
+            // context.Users.Add(new User
+            // {
+            //     Name = "Vitória  Iglesias",
+            //     Email = "viiglesias@gmail.com",
+            //     PasswordHash = "0145451321654ASGJUYT12345",
+            //     Bio = "Estudante",
+            //     Image = "http://",
+            //     Slug = "vitoria-iglesias"
+            // });
+            // context.SaveChanges();
+
+            User user = context.Users.FirstOrDefault(u => u.Id == 25)!;
+            context.Posts.Add(new Post
+            {
+                Category = new Category { Name = "Categoria", Slug = "categoria" },
+                Author = user,
+                Title = "Postagem sem assunto",
+                Slug = "postagem-sem-assunto",
+                Body = "Artigo Genérico",
+                Summary = "Neste artigo não temos nada de interessante",
+                CreateDate = DateTime.Now
+                //LastUpdateDate = DateTime.Now
+            });
+            context.SaveChanges();
+
             Console.WriteLine("");
         }
     }
